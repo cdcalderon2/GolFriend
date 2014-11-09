@@ -1,6 +1,6 @@
-<div ng-repeat="game in vm.games">
+<div ng-repeat="(gameeId, game) in vm.games">
      <a>{{game.name}} </a>
-     <a ng-click="vm.delete($index)">delete</a>
+     <a ng-click="vm.delete(gameeId)">delete</a>
 </div>
 
 <form ng-submit="vm.submitGame()">

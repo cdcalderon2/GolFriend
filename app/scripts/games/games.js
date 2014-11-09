@@ -3,20 +3,26 @@
 
     function GamesCtrl(gameResource){
         var vm = this;
-
         vm.game = {game: ""};
+        vm.games = gameResource.get();
         vm.submitGame = function(){
-            vm.games.push(vm.game)
-            vm.game = {game: ""};
+           gameResource.save(vm.game, function(ref){
+               vm.games[ref.name] = vm.game;
+               vm.game = {game: ""};
+           });
+
         };
 
-        vm.delete = function(index){
-            vm.games.splice(index, 1);
+        vm.delete = function(gameId){
+            //vm.games.splice(index, 1);
+            gameResource.delete({id: gameId}, function(){
+           delete vm.games[gameId];
+            });
         };
 
-        gameResource.query(function(data){
-            vm.games = data;
-        });
+//        gameResource.query(function(data){
+//            vm.games = data;
+//        });
     };
 })();
 

@@ -19,7 +19,7 @@ var app = angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'gameResourceMock',
+    //'gameResourceMock',
     'common.services'
 
   ])
