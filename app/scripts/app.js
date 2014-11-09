@@ -1,3 +1,6 @@
+/* global app:true */
+/* exported app */
+
 'use strict';
 
 /**
@@ -8,24 +11,23 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('golfriendsApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'gameResourceMock',
+    'common.services'
+
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        templateUrl: '../views/games.html',
+        controller: 'GamesCtrl as vm'
       })
       .otherwise({
         redirectTo: '/'
