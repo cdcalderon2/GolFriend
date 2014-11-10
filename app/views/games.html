@@ -1,11 +1,32 @@
-<div ng-repeat="(gameeId, game) in vm.games">
-     <a>{{game.name}} </a>
-     <a ng-click="vm.delete(gameeId)">delete</a>
+
+<div class="container posts-page">
+    <div class="post row" ng-repeat="game in vm.games">
+        <div class="col-xs-1">
+        </div>
+        <div class="col-md-9 col-xs-11">
+
+            <div class="info">
+                <a>{{ game.name }}
+                    <span class="url">({{ game.name }})</span>
+                </a>
+            </div>
+            <div>
+                <span>submitted by <a ng-href="#/users/{{ game.creatorUID }}">{{ game.creator }}</a></span>
+                &mdash;
+                <a ng-href="#/games/{{ game.$id }}">players</a>
+                <a ng-click="vm.delete(game)" ng-show="user.uid === game.creatorUID">delete</a>
+            </div>
+        </div>
+    </div>
 </div>
 
-<form ng-submit="vm.submitGame()">
-    <input type="text" ng-model="vm.game.name"/>
-    <input  type="submit" value="Submit Game"/>
-</form>
+<!--<div ng-repeat="game in vm.games">-->
+    <!--<a>{{game.name}} </a>-->
+    <!--<a ng-href="#/games/{{game.$id}}">Players</a>-->
+    <!--<a ng-click="vm.delete(game)">delete</a>-->
+<!--</div>-->
 
-Games: {{vm.games}}
+<!--<form ng-submit="vm.submitGame()">-->
+    <!--<input type="text" ng-model="vm.game.name"/>-->
+    <!--<input  type="submit" value="Submit Game"/>-->
+<!--</form>-->

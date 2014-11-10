@@ -1,25 +1,14 @@
 (function(){
-    angular.module("golfriendsApp").controller("GamesCtrl", ["gameResource", GamesCtrl]);
+    angular.module("golfriendsApp").controller("GamesCtrl", ["gameResource", "$location", "auth", GamesCtrl]);
 
-    function GamesCtrl(gameResource){
+    function GamesCtrl(gameResource, auth){
         var vm = this;
         vm.game = {game: ""};
-        vm.games = gameResource.get();
-        vm.submitGame = function(){
-           gameResource.save(vm.game, function(ref){
-               vm.games[ref.name] = vm.game;
-               vm.game = {game: ""};
-           });
-
+        vm.games = gameResource.all;
+        vm.user = auth.user;
+        vm.delete = function(game){
+           gameResource.delete(game);
         };
-
-        vm.delete = function(gameId){
-            //vm.games.splice(index, 1);
-            gameResource.delete({id: gameId}, function(){
-           delete vm.games[gameId];
-            });
-        };
-
 //        gameResource.query(function(data){
 //            vm.games = data;
 //        });
